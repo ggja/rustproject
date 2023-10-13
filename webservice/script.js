@@ -1,11 +1,13 @@
-// Example Tic-Tac-Toe board values as a single array.
-const boardValues = [
-    "X", "O", "X",
-    "O", "X", "O",
-    "X", "O", "o"
-];
-
-// Bind the array values to the Tic-Tac-Toe board.
-for (let i = 0; i < boardValues.length; i++) {
-    document.getElementById(`cell-${i}`).innerText = boardValues[i];
+import init, { get_tic_tac_toe_board } from '../tto/pkg/tto.js';
+  
+async function run() {
+    await init();
+    const boardValues = get_tic_tac_toe_board();
+    for (let i = 0; i < boardValues.length; i++) {
+        const cell = document.getElementById(`cell-${i}`);
+        cell.innerText = boardValues[i] == 0 ? "" : boardValues[i] == 1 ? "X" : "O";;
+        cell.className = boardValues[i] == 0 ? "empty" : boardValues[i] == 1 ? "cell_x" : "cell_o";
+    }
 }
+
+run();
